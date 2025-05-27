@@ -1,8 +1,8 @@
-using AppTiengAnhBE.Models;
+using AppTiengAnhBE.Models.SystemModel;
 using Dapper;
 using System.Data;
 
-namespace AppTiengAnhBE.Repositories.LessonsRepo
+namespace AppTiengAnhBE.Repositories.LessonsCRUDRepo
 {
     public class LessonRepository : ILessonRepository
     {

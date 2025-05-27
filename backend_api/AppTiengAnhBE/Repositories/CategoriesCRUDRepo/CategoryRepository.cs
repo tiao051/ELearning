@@ -1,10 +1,8 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AppTiengAnhBE.Models;
 using Dapper;
 using System.Data;
+using AppTiengAnhBE.Models.SystemModel;
 
-namespace AppTiengAnhBE.Repositories.CategoriesRepo
+namespace AppTiengAnhBE.Repositories.CategoriesCRUDRepo
 {
     public class CategoryRepository : ICategoryRepository
     {

@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AppTiengAnhBE.Models;
+using AppTiengAnhBE.Models.SystemModel;
 
-namespace AppTiengAnhBE.Repositories.UserRepo
+namespace AppTiengAnhBE.Repositories.UserCRUDRepo
 {
     public interface IUserRepository
     {

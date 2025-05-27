@@ -1,11 +1,8 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AppTiengAnhBE.Models;
-using Microsoft.Extensions.Configuration;
 using Npgsql;
 using Dapper;
+using AppTiengAnhBE.Models.SystemModel;
 
-namespace AppTiengAnhBE.Repositories.UserRepo
+namespace AppTiengAnhBE.Repositories.UserCRUDRepo
 {
     public class UserRepository : IUserRepository
     {

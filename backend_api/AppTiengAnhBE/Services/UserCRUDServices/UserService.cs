@@ -1,9 +1,7 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AppTiengAnhBE.Models;
-using AppTiengAnhBE.Repositories.UserRepo;
+using AppTiengAnhBE.Models.SystemModel;
+using AppTiengAnhBE.Repositories.UserCRUDRepo;
 
-namespace AppTiengAnhBE.Services.UserServices
+namespace AppTiengAnhBE.Services.UserCRUDServices
 {
     public class UserService : IUserService
     {

@@ -1,7 +1,7 @@
-using AppTiengAnhBE.Models;
-using AppTiengAnhBE.Repositories.LessonsRepo;
+using AppTiengAnhBE.Models.SystemModel;
+using AppTiengAnhBE.Repositories.LessonsCRUDRepo;
 
-namespace AppTiengAnhBE.Services.LessonServices
+namespace AppTiengAnhBE.Services.LessonsCRUDServices
 {
     public interface ILessonService
     {

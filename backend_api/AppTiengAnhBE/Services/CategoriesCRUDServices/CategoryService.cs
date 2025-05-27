@@ -1,7 +1,7 @@
-using AppTiengAnhBE.Models;
-using AppTiengAnhBE.Repositories.CategoriesRepo;
+using AppTiengAnhBE.Models.SystemModel;
+using AppTiengAnhBE.Repositories.CategoriesCRUDRepo;
 
-namespace AppTiengAnhBE.Services.CategoriesServices
+namespace AppTiengAnhBE.Services.CategoriesCRUDServices
 {
     public interface ICategoryService
     {

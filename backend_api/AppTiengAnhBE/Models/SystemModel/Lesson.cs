@@ -1,4 +1,4 @@
-namespace AppTiengAnhBE.Models
+namespace AppTiengAnhBE.Models.SystemModel
 {
     public class Lesson
     {
@@ -7,6 +7,6 @@ namespace AppTiengAnhBE.Models
         public string title { get; set; }
         public string description { get; set; }
         public int order_num { get; set; }
-        public System.DateTime created_at { get; set; }
+        public DateTime created_at { get; set; }
     }
 }

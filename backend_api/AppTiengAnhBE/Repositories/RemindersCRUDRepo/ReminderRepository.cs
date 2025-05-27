@@ -2,7 +2,7 @@
 using Dapper;
 using System.Data;
 
-namespace AppTiengAnhBE.Repositories.RemindersRepo
+namespace AppTiengAnhBE.Repositories.RemindersCRUDRepo
 {
     public class ReminderRepository : IReminderRepository
     {

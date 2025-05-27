@@ -1,6 +1,6 @@
 ﻿using AppTiengAnhBE.Models;
 
-namespace AppTiengAnhBE.Repositories.RemindersRepo
+namespace AppTiengAnhBE.Repositories.RemindersCRUDRepo
 {
     public interface IReminderRepository
     {

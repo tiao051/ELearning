@@ -1,6 +1,6 @@
-using AppTiengAnhBE.Models;
+using AppTiengAnhBE.Models.SystemModel;
 
-namespace AppTiengAnhBE.Repositories.CategoriesRepo
+namespace AppTiengAnhBE.Repositories.CategoriesCRUDRepo
 {
     public interface ICategoryRepository
     {

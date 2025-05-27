@@ -1,6 +1,6 @@
-using AppTiengAnhBE.Models;
+using AppTiengAnhBE.Models.SystemModel;
 
-namespace AppTiengAnhBE.Repositories.LessonsRepo
+namespace AppTiengAnhBE.Repositories.LessonsCRUDRepo
 {
     public interface ILessonRepository
     {

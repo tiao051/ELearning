@@ -1,7 +1,7 @@
 ﻿using AppTiengAnhBE.Models;
-using AppTiengAnhBE.Repositories.RemindersRepo;
+using AppTiengAnhBE.Repositories.RemindersCRUDRepo;
 
-namespace AppTiengAnhBE.Services.RemindersServices
+namespace AppTiengAnhBE.Services.RemindersCRUDServices
 {
     public interface IReminderService
     {

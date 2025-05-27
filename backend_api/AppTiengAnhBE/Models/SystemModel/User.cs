@@ -1,4 +1,4 @@
-namespace AppTiengAnhBE.Models
+namespace AppTiengAnhBE.Models.SystemModel
 {
     public class User
     {
@@ -8,6 +8,6 @@ namespace AppTiengAnhBE.Models
         public string password { get; set; }
         public string full_name { get; set; }
         public int role_id { get; set; }
-        public System.DateTime created_at { get; set; }
+        public DateTime created_at { get; set; }
     }
 }
