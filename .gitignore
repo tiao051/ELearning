@@ -1,0 +1,5 @@
+.vs/
+bin/
+obj/
+
+backend_api/AppTiengAnhBE/bin/Debug/net9.0/appsettings.Development.json
