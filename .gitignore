@@ -1,5 +1,33 @@
+# Visual Studio cache files
 .vs/
+
+# Build folders
 bin/
 obj/
 
-backend_api/AppTiengAnhBE/bin/Debug/net9.0/appsettings.Development.json
+# Ignore all appsettings.Development.json files in any folder
+**/appsettings.Development.json
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Others
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Rider IDE files (nếu bạn dùng Rider)
+.idea/
+
+# Node modules (nếu dự án có frontend NodeJS)
+node_modules/
+
+# Publish output
+publish/
+
+# Optional: config local secrets file (nếu có)
+secrets.json

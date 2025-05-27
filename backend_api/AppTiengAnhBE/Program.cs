@@ -1,19 +1,23 @@
-﻿using AppTiengAnhBE.Repositories.CategoriesRepo;
-using AppTiengAnhBE.Repositories.LessonsRepo;
-using AppTiengAnhBE.Repositories.UserRepo;
-using AppTiengAnhBE.Services.CategoriesServices;
-using AppTiengAnhBE.Services.LessonServices;
-using AppTiengAnhBE.Services.UserServices;
-using AppTiengAnhBE.Services.RemindersServices;
-using System.Data;
+﻿using System.Data;
 using Npgsql;
-using AppTiengAnhBE.Repositories.RemindersRepo;
 using System.Text.Json;
 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using AppTiengAnhBE.Repositories.LessonsCRUDRepo;
+using AppTiengAnhBE.Repositories.CategoriesCRUDRepo;
+using AppTiengAnhBE.Repositories.RemindersCRUDRepo;
+using AppTiengAnhBE.Repositories.UserCRUDRepo;
+using AppTiengAnhBE.Services.CategoriesCRUDServices;
+using AppTiengAnhBE.Services.LessonsCRUDServices;
+using AppTiengAnhBE.Services.RemindersCRUDServices;
+using AppTiengAnhBE.Services.UserCRUDServices;
+using AppTiengAnhBE.Repositories.LessonResults;
+using AppTiengAnhBE.Services.LessonResults;
+using AppTiengAnhBE.Repositories.UserQuestionAnswers;
+using AppTiengAnhBE.Services.UserQuestionAnswers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +41,10 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IReminderRepository, ReminderRepository>();
 builder.Services.AddScoped<IReminderService, ReminderService>();
+builder.Services.AddScoped<ILessonResultRepository, LessonResultRepository>();
+builder.Services.AddScoped<ILessonResultService, LessonResultService>();
+builder.Services.AddScoped<IUserQuestionAnswerRepository, UserQuestionAnswerRepository>();
+builder.Services.AddScoped<IUserQuestionAnswerService, UserQuestionAnswerService>();
 
 // Thêm đoạn này để cấu hình Authentication với Google
 builder.Services.AddAuthentication(options =>
@@ -44,14 +52,11 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
 })
-.AddCookie() // Sử dụng cookie để lưu session user đăng nhập
+.AddCookie() 
 .AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-
-    // Nếu bạn cần customize redirect URI (mặc định là /signin-google)
-    // googleOptions.CallbackPath = "/signin-google";
 });
 
 builder.Services.AddAuthorization();
@@ -61,13 +66,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthentication(); // Bắt buộc phải có
+app.UseAuthentication(); 
 app.UseAuthorization();
-
 app.MapControllers();
 
 // Thêm route test login Google (tùy chọn)
