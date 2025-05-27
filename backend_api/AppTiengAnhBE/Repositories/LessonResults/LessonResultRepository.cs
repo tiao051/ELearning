@@ -13,7 +13,14 @@ namespace AppTiengAnhBE.Repositories.LessonResults
         {
             _dbConnection = dbConnection;
         }
-        public async Task<int> CreateUserLessonResultAsync(int userId, int lessonId, int totalQuestions, int totalCorrect, float score)
+        public async Task<int> CreateUserLessonResultAsync(
+            int userId,
+            int lessonId,
+            int totalQuestions,
+            int totalCorrect,
+            float score,
+            DateTime startedAt,
+            DateTime submittedAt)
         {
             var sql = @"
                 INSERT INTO user_lesson_results (user_id, lesson_id, total_questions, total_correct, score, started_at, submitted_at)
@@ -27,8 +34,8 @@ namespace AppTiengAnhBE.Repositories.LessonResults
                 TotalQuestions = totalQuestions,
                 TotalCorrect = totalCorrect,
                 Score = score,
-                StartedAt = DateTime.Now,
-                SubmittedAt = DateTime.Now
+                StartedAt = startedAt,
+                SubmittedAt = submittedAt
             });
 
             return resultId;
@@ -37,7 +44,7 @@ namespace AppTiengAnhBE.Repositories.LessonResults
         public async Task SaveUserAnswerAsync(int resultId, int questionId, string answerText, bool isCorrect)
         {
             var sql = @"
-                INSERT INTO user_exercise_answers (user_result_id, question_id, answer_text, is_correct)
+                INSERT INTO user_question_answers (user_result_id, question_id, answer_text, is_correct)
                 VALUES (@ResultId, @QuestionId, @AnswerText, @IsCorrect);";
 
             await _dbConnection.ExecuteAsync(sql, new
@@ -53,7 +60,7 @@ namespace AppTiengAnhBE.Repositories.LessonResults
         {
             var sql = @"
                 SELECT LOWER(answer_text) 
-                FROM user_exercise_answers
+                FROM user_question_answers
                 WHERE question_id = @QuestionId AND is_correct = TRUE;";
 
             var answers = await _dbConnection.QueryAsync<string>(sql, new { QuestionId = questionId });
