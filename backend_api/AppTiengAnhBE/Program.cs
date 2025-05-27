@@ -16,6 +16,8 @@ using AppTiengAnhBE.Services.RemindersCRUDServices;
 using AppTiengAnhBE.Services.UserCRUDServices;
 using AppTiengAnhBE.Repositories.LessonResults;
 using AppTiengAnhBE.Services.LessonResults;
+using AppTiengAnhBE.Repositories.UserQuestionAnswers;
+using AppTiengAnhBE.Services.UserQuestionAnswers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +43,8 @@ builder.Services.AddScoped<IReminderRepository, ReminderRepository>();
 builder.Services.AddScoped<IReminderService, ReminderService>();
 builder.Services.AddScoped<ILessonResultRepository, LessonResultRepository>();
 builder.Services.AddScoped<ILessonResultService, LessonResultService>();
+builder.Services.AddScoped<IUserQuestionAnswerRepository, UserQuestionAnswerRepository>();
+builder.Services.AddScoped<IUserQuestionAnswerService, UserQuestionAnswerService>();
 
 // Thêm đoạn này để cấu hình Authentication với Google
 builder.Services.AddAuthentication(options =>

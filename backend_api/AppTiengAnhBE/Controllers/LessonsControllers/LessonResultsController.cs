@@ -1,5 +1,6 @@
 ﻿using AppTiengAnhBE.Models.DTOs.LessonDTO;
 using AppTiengAnhBE.Services.LessonResults;
+using AppTiengAnhBE.Services.UserQuestionAnswers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppTiengAnhBE.Controllers.LessonsControllers
@@ -9,9 +10,14 @@ namespace AppTiengAnhBE.Controllers.LessonsControllers
     public class LessonResultsController : ControllerBase
     {
         private readonly ILessonResultService _lessonResultService;
-        public LessonResultsController(ILessonResultService lessonResultService)
+        private readonly IUserQuestionAnswerService _userQuestionAnswerService;
+
+        public LessonResultsController
+            (ILessonResultService lessonResultService,
+            IUserQuestionAnswerService userQuestionAnswerService)
         {
             _lessonResultService = lessonResultService;
+            _userQuestionAnswerService = userQuestionAnswerService;
         }
 
         [HttpPost("submit")]
@@ -29,6 +35,16 @@ namespace AppTiengAnhBE.Controllers.LessonsControllers
                 return NotFound($"No answers found for resultId = {resultId}");
             }
             return Ok(answers);
+        }
+        [HttpGet("answers/details/{resultId}")]
+        public async Task<IActionResult> GetUserAnswerDetails(int resultId)
+        {
+            var details = await _userQuestionAnswerService.GetUserAnswerDetailsAsync(resultId);
+
+            if (details == null || !details.Any())
+                return NotFound($"No answers found for resultId = {resultId}");
+
+            return Ok(details);
         }
     }
 }

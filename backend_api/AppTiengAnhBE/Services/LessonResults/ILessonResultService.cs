@@ -1,4 +1,5 @@
 ﻿using AppTiengAnhBE.Models.DTOs.LessonDTO;
+using AppTiengAnhBE.Models.DTOs.UserAnswerDTO;
 
 namespace AppTiengAnhBE.Services.LessonResults
 {

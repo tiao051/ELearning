@@ -1,5 +1,4 @@
-﻿
-using AppTiengAnhBE.Models.DTOs.LessonDTO;
+﻿using AppTiengAnhBE.Models.DTOs.UserAnswerDTO;
 using Dapper;
 using System;
 using System.Data;

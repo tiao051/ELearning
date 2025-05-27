@@ -1,4 +1,4 @@
-﻿namespace AppTiengAnhBE.Models.DTOs.LessonDTO
+﻿namespace AppTiengAnhBE.Models.DTOs.UserAnswerDTO
 {
     public class AnswerFeedback
     {
