@@ -26,6 +26,7 @@ namespace AppTiengAnhBE.Controllers.LessonsControllers
             var result = await _lessonResultService.ProcessSubmissionAsync(request);
             return Ok(result);
         }
+
         [HttpGet("answers/{resultId}")]
         public async Task<IActionResult> GetUserAnswers(int resultId)
         {
@@ -36,6 +37,7 @@ namespace AppTiengAnhBE.Controllers.LessonsControllers
             }
             return Ok(answers);
         }
+
         [HttpGet("answers/details/{resultId}")]
         public async Task<IActionResult> GetUserAnswerDetails(int resultId)
         {
@@ -45,6 +47,17 @@ namespace AppTiengAnhBE.Controllers.LessonsControllers
                 return NotFound($"No answers found for resultId = {resultId}");
 
             return Ok(details);
+        }
+
+        [HttpGet("history/{userId}")]
+        public async Task<IActionResult> GetUserLessonHistory(int userId)
+        {
+            var results = await _lessonResultService.GetLessonResultsByUserIdAsync(userId);
+            if (results == null || !results.Any())
+            {
+                return NotFound($"No lesson results found for userId = {userId}");
+            }
+            return Ok(results);
         }
     }
 }

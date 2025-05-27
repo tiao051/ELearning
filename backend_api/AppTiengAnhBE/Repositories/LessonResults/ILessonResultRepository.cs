@@ -1,4 +1,5 @@
 ﻿using AppTiengAnhBE.Models.DTOs.UserAnswerDTO;
+using AppTiengAnhBE.Models.DTOs.UserLessonResultDTO;
 
 namespace AppTiengAnhBE.Repositories.LessonResults
 {
@@ -8,5 +9,6 @@ namespace AppTiengAnhBE.Repositories.LessonResults
         Task SaveUserAnswerAsync(int resultId, int questionId, string answerText, bool isCorrect);
         Task<List<string>> GetCorrectAnswersAsync(int questionId);
         Task<IEnumerable<UserExerciseAnswer>> GetUserAnswersByResultIdAsync(int resultId);
+        Task<IEnumerable<UserLessonResult>> GetLessonResultsByUserIdAsync(int userId);
     }
 }
