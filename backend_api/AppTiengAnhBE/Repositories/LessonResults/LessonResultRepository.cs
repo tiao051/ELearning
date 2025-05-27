@@ -1,4 +1,5 @@
 ﻿using AppTiengAnhBE.Models.DTOs.UserAnswerDTO;
+using AppTiengAnhBE.Models.DTOs.UserLessonResultDTO;
 using Dapper;
 using System;
 using System.Data;
@@ -66,6 +67,16 @@ namespace AppTiengAnhBE.Repositories.LessonResults
                 WHERE user_result_id = @ResultId;";
 
             return await _dbConnection.QueryAsync<UserExerciseAnswer>(sql, new { ResultId = resultId });
+        }
+        public async Task<IEnumerable<UserLessonResult>> GetLessonResultsByUserIdAsync(int userId)
+        {
+            var sql = @"
+                SELECT id, user_id, lesson_id, score, submitted_at
+                FROM user_lesson_results
+                WHERE user_id = @UserId
+                ORDER BY submitted_at DESC;";
+
+            return await _dbConnection.QueryAsync<UserLessonResult>(sql, new { UserId = userId });
         }
     }
 }

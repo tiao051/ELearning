@@ -1,5 +1,6 @@
 ﻿using AppTiengAnhBE.Models.DTOs.LessonDTO;
 using AppTiengAnhBE.Models.DTOs.UserAnswerDTO;
+using AppTiengAnhBE.Models.DTOs.UserLessonResultDTO;
 using AppTiengAnhBE.Repositories.LessonResults;
 
 namespace AppTiengAnhBE.Services.LessonResults
@@ -47,6 +48,10 @@ namespace AppTiengAnhBE.Services.LessonResults
         public async Task<IEnumerable<UserExerciseAnswer>> GetAnswersByResultIdAsync(int resultId)
         {
             return await _repo.GetUserAnswersByResultIdAsync(resultId);
+        }
+        public async Task<IEnumerable<UserLessonResult>> GetLessonResultsByUserIdAsync(int userId)
+        {
+            return await _repo.GetLessonResultsByUserIdAsync(userId);
         }
     }
 }
