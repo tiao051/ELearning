@@ -30,21 +30,47 @@ namespace AppTiengAnhBE.Services.LessonResults
             }
 
             float score = totalQuestions == 0 ? 0 : (float)totalCorrect / totalQuestions * 10;
-            int resultId = await _repo.CreateUserLessonResultAsync(request.UserId, request.LessonId, totalQuestions, totalCorrect, score);
+
+            var vietnamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            DateTime startedAtVN = TimeZoneInfo.ConvertTime(request.StartedAt, vietnamTimeZone);
+            DateTime nowVN = TimeZoneInfo.ConvertTime(DateTime.Now, vietnamTimeZone);
+
+            Console.WriteLine($"DateTime.Now: {DateTime.Now}");         // Giờ local máy chạy code
+            Console.WriteLine($"DateTime.UtcNow: {DateTime.UtcNow}");   // Giờ UTC chuẩn
+            Console.WriteLine($"TimeZoneInfo.Local.Id: {TimeZoneInfo.Local.Id}");  // Timezone mặc định máy
+
+
+            int resultId = await _repo.CreateUserLessonResultAsync(
+                request.UserId, request.LessonId, totalQuestions, totalCorrect, score, startedAtVN, nowVN);
 
             foreach (var item in correctness)
             {
                 await _repo.SaveUserAnswerAsync(resultId, item.QuestionId, item.AnswerText, item.IsCorrect);
             }
 
+            var duration = nowVN - startedAtVN;
+            if (duration.TotalSeconds < 0)
+                duration = TimeSpan.Zero;
+
+            string durationText = FormatDuration(duration);
+
             return new SubmitResult
             {
                 TotalQuestions = totalQuestions,
                 TotalCorrect = totalCorrect,
                 Score = score,
-                SubmittedAt = DateTime.Now
+                DurationText = durationText
             };
         }
+
+        private string FormatDuration(TimeSpan duration)
+        {
+            if (duration.TotalSeconds < 60)
+                return $"{duration.Seconds} giây";
+            else
+                return $"{(int)duration.TotalMinutes} phút {duration.Seconds % 60} giây";
+        }
+
         public async Task<IEnumerable<UserExerciseAnswer>> GetAnswersByResultIdAsync(int resultId)
         {
             return await _repo.GetUserAnswersByResultIdAsync(resultId);

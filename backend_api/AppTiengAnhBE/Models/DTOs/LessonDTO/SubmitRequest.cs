@@ -4,6 +4,7 @@
     {
         public int UserId { get; set; }
         public int LessonId { get; set; }
+        public DateTime StartedAt { get; set; }
         public required List<AnswerRequest> Answers { get; set; }
     }
 }
