@@ -1,5 +1,5 @@
 ﻿using AppTiengAnhBE.Models.DTOs.UserAnswerDTO;
-using AppTiengAnhBE.Repositories.UserQuestionAnswers;
+using AppTiengAnhBE.Repositories.UserRepository.UserQuestionAnswers;
 
 namespace AppTiengAnhBE.Services.UserServices.UserQuestionAnswers
 {

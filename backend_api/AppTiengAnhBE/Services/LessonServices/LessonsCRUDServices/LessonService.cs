@@ -1,5 +1,5 @@
 using AppTiengAnhBE.Models.SystemModel;
-using AppTiengAnhBE.Repositories.LessonsCRUDRepo;
+using AppTiengAnhBE.Repositories.LessonRepository.LessonsCRUDRepo;
 
 namespace AppTiengAnhBE.Services.LessonServices.LessonsCRUDServices
 {

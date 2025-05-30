@@ -1,5 +1,5 @@
 using AppTiengAnhBE.Models.SystemModel;
-using AppTiengAnhBE.Repositories.UserCRUDRepo;
+using AppTiengAnhBE.Repositories.UserRepository.UserCRUDRepo;
 
 namespace AppTiengAnhBE.Services.UserServices.UserCRUDServices
 {

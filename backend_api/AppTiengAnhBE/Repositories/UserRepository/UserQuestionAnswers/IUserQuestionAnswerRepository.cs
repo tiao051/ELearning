@@ -1,6 +1,6 @@
 ﻿using AppTiengAnhBE.Models.DTOs.UserAnswerDTO;
 
-namespace AppTiengAnhBE.Repositories.UserQuestionAnswers
+namespace AppTiengAnhBE.Repositories.UserRepository.UserQuestionAnswers
 {
     public interface IUserQuestionAnswerRepository
     {

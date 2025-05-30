@@ -1,9 +1,9 @@
 ﻿using AppTiengAnhBE.Models.DTOs.LessonDTO;
 using AppTiengAnhBE.Models.DTOs.UserAnswerDTO;
 using AppTiengAnhBE.Models.DTOs.UserLessonResultDTO;
-using AppTiengAnhBE.Repositories.LessonResults;
+using AppTiengAnhBE.Repositories.LessonRepository.LessonResults;
 
-namespace AppTiengAnhBE.Services.LessonResults
+namespace AppTiengAnhBE.Services.LessonServices.LessonResults
 {
     public class LessonResultService : ILessonResultService
     {
@@ -35,9 +35,9 @@ namespace AppTiengAnhBE.Services.LessonResults
             DateTime startedAtVN = TimeZoneInfo.ConvertTime(request.StartedAt, vietnamTimeZone);
             DateTime nowVN = TimeZoneInfo.ConvertTime(DateTime.Now, vietnamTimeZone);
 
-            Console.WriteLine($"DateTime.Now: {DateTime.Now}");      
-            Console.WriteLine($"DateTime.UtcNow: {DateTime.UtcNow}"); 
-            Console.WriteLine($"TimeZoneInfo.Local.Id: {TimeZoneInfo.Local.Id}"); 
+            Console.WriteLine($"DateTime.Now: {DateTime.Now}");
+            Console.WriteLine($"DateTime.UtcNow: {DateTime.UtcNow}");
+            Console.WriteLine($"TimeZoneInfo.Local.Id: {TimeZoneInfo.Local.Id}");
 
             int resultId = await _repo.CreateUserLessonResultAsync(
                 request.UserId, request.LessonId, totalQuestions, totalCorrect, score, startedAtVN, nowVN);

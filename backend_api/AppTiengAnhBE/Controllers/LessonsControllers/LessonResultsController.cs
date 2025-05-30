@@ -1,6 +1,6 @@
 ﻿using AppTiengAnhBE.Models.DTOs.LessonDTO;
 using AppTiengAnhBE.Services.LessonServices.LessonResults;
-using AppTiengAnhBE.Services.UserQuestionAnswers;
+using AppTiengAnhBE.Services.UserServices.UserQuestionAnswers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppTiengAnhBE.Controllers.LessonsControllers

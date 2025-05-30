@@ -2,7 +2,7 @@
 using Dapper;
 using System.Data;
 
-namespace AppTiengAnhBE.Repositories.UserQuestionAnswers
+namespace AppTiengAnhBE.Repositories.UserRepository.UserQuestionAnswers
 {
     public class UserQuestionAnswerRepository : IUserQuestionAnswerRepository
     {

@@ -1,5 +1,5 @@
 using AppTiengAnhBE.Models.SystemModel;
-using AppTiengAnhBE.Repositories.CategoriesCRUDRepo;
+using AppTiengAnhBE.Repositories.CategoryServices.CategoriesCRUDRepo;
 
 namespace AppTiengAnhBE.Services.CategoryServices.CategoriesCRUDServices
 {
