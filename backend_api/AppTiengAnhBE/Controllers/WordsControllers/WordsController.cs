@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AppTiengAnhBE.Controllers.QuestionsControllers
+namespace AppTiengAnhBE.Controllers.WordsControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class QuestionController : ControllerBase
+    public class WordsController : ControllerBase
     {
     }
 }
