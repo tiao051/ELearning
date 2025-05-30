@@ -78,7 +78,7 @@ namespace AppTiengAnhBE.Repositories.LessonRepository.LessonResults
         public async Task<IEnumerable<UserLessonResult>> GetLessonResultsByUserIdAsync(int userId)
         {
             var sql = @"
-                SELECT id, user_id, lesson_id, score, submitted_at
+                SELECT id, user_id AS UserId, lesson_id AS LessonId, score, submitted_at AS CreatedAt
                 FROM user_lesson_results
                 WHERE user_id = @UserId
                 ORDER BY submitted_at DESC;";
