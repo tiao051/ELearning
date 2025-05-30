@@ -1,5 +1,5 @@
 ﻿using AppTiengAnhBE.Models.SystemModel;
-using AppTiengAnhBE.Services.LessonsCRUDServices;
+using AppTiengAnhBE.Services.LessonServices.LessonsCRUDServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppTiengAnhBE.Controllers.LessonsControllers

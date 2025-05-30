@@ -1,5 +1,5 @@
 ﻿using AppTiengAnhBE.Models.DTOs.LessonDTO;
-using AppTiengAnhBE.Services.LessonResults;
+using AppTiengAnhBE.Services.LessonServices.LessonResults;
 using AppTiengAnhBE.Services.UserQuestionAnswers;
 using Microsoft.AspNetCore.Mvc;
 
