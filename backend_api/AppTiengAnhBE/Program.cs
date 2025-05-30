@@ -6,18 +6,20 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using AppTiengAnhBE.Repositories.LessonsCRUDRepo;
-using AppTiengAnhBE.Repositories.CategoriesCRUDRepo;
 using AppTiengAnhBE.Repositories.RemindersCRUDRepo;
-using AppTiengAnhBE.Repositories.UserCRUDRepo;
-using AppTiengAnhBE.Services.CategoriesCRUDServices;
-using AppTiengAnhBE.Services.LessonsCRUDServices;
 using AppTiengAnhBE.Services.RemindersCRUDServices;
-using AppTiengAnhBE.Services.UserCRUDServices;
-using AppTiengAnhBE.Repositories.LessonResults;
-using AppTiengAnhBE.Services.LessonResults;
-using AppTiengAnhBE.Repositories.UserQuestionAnswers;
-using AppTiengAnhBE.Services.UserQuestionAnswers;
+using AppTiengAnhBE.Services.LessonServices.LessonsCRUDServices;
+using AppTiengAnhBE.Services.LessonServices.LessonResults;
+using AppTiengAnhBE.Services.CategoryServices.CategoriesCRUDServices;
+using AppTiengAnhBE.Services.UserServices.UserQuestionAnswers;
+using AppTiengAnhBE.Services.UserServices.UserCRUDServices;
+using AppTiengAnhBE.Repositories.LessonRepository.LessonResults;
+using AppTiengAnhBE.Repositories.LessonRepository.LessonsCRUDRepo;
+using AppTiengAnhBE.Repositories.UserRepository.UserQuestionAnswers;
+using AppTiengAnhBE.Repositories.UserRepository.UserCRUDRepo;
+using AppTiengAnhBE.Repositories.CategoryServices.CategoriesCRUDRepo;
+using AppTiengAnhBE.Repositories.QuestionRepo;
+using AppTiengAnhBE.Services.QuestionServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +47,8 @@ builder.Services.AddScoped<ILessonResultRepository, LessonResultRepository>();
 builder.Services.AddScoped<ILessonResultService, LessonResultService>();
 builder.Services.AddScoped<IUserQuestionAnswerRepository, UserQuestionAnswerRepository>();
 builder.Services.AddScoped<IUserQuestionAnswerService, UserQuestionAnswerService>();
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+builder.Services.AddScoped<IQuestionService, QuestionService>();
 
 // Thêm đoạn này để cấu hình Authentication với Google
 builder.Services.AddAuthentication(options =>
