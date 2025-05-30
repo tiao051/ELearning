@@ -60,7 +60,7 @@ namespace AppTiengAnhBE.Repositories.LessonRepository.LessonResults
         {
             var sql = @"
                 SELECT LOWER(answer_text) 
-                FROM user_question_answers
+                FROM question_answers
                 WHERE question_id = @QuestionId AND is_correct = TRUE;";
 
             var answers = await _dbConnection.QueryAsync<string>(sql, new { QuestionId = questionId });
