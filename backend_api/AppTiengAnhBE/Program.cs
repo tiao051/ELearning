@@ -20,6 +20,8 @@ using AppTiengAnhBE.Repositories.UserRepository.UserCRUDRepo;
 using AppTiengAnhBE.Repositories.CategoryServices.CategoriesCRUDRepo;
 using AppTiengAnhBE.Repositories.QuestionRepo;
 using AppTiengAnhBE.Services.QuestionServices;
+using AppTiengAnhBE.Repositories.WordRepo;
+using AppTiengAnhBE.Services.WordServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +51,8 @@ builder.Services.AddScoped<IUserQuestionAnswerRepository, UserQuestionAnswerRepo
 builder.Services.AddScoped<IUserQuestionAnswerService, UserQuestionAnswerService>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
+builder.Services.AddScoped<IWordRepository, WordRepository>();
+builder.Services.AddScoped<IWordService, WordService>();
 
 // Thêm đoạn này để cấu hình Authentication với Google
 builder.Services.AddAuthentication(options =>
