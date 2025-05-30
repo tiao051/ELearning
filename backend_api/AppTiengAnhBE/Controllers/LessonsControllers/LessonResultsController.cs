@@ -50,10 +50,10 @@ namespace AppTiengAnhBE.Controllers.LessonsControllers
             return Ok(details);
         }
 
-        [HttpGet("wrong-questions/details")]
-        public async Task<ActionResult<IEnumerable<UserAnswerDetail>>> GetWrongQuestionDetails([FromQuery] int userId)
+        [HttpGet("wrong-questions/details/{userResultId}")]
+        public async Task<ActionResult<IEnumerable<UserAnswerDetail>>> GetWrongQuestionDetails(int userResultId)
         {
-            var details = await _userQuestionAnswerService.GetWrongQuestionIds(userId);
+            var details = await _userQuestionAnswerService.GetWrongQuestionIds(userResultId);
 
             if (details == null || !details.Any())
                 return NotFound("No wrong question details found for this user and lesson");
