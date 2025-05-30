@@ -49,7 +49,7 @@ namespace AppTiengAnhBE.Controllers.LessonsControllers
 
             return Ok(details);
         }
-
+        //api test: https://localhost:7093/api/lessonresults/wrong-questions/details/25
         [HttpGet("wrong-questions/details/{userResultId}")]
         public async Task<ActionResult<IEnumerable<UserAnswerDetail>>> GetWrongQuestionDetails(int userResultId)
         {
@@ -60,7 +60,7 @@ namespace AppTiengAnhBE.Controllers.LessonsControllers
 
             return Ok(details);
         }
-
+        //api test: https://localhost:7093/api/lessonresults/history/17
         [HttpGet("history/{userId}")]
         public async Task<IActionResult> GetUserLessonHistory(int userId)
         {

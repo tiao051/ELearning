@@ -75,6 +75,7 @@ namespace AppTiengAnhBE.Repositories.LessonRepository.LessonResults
 
             return await _dbConnection.QueryAsync<UserExerciseAnswer>(sql, new { ResultId = resultId });
         }
+
         public async Task<IEnumerable<UserLessonResult>> GetLessonResultsByUserIdAsync(int userId)
         {
             var sql = @"

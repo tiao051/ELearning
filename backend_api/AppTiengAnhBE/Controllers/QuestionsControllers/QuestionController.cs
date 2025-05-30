@@ -1,4 +1,5 @@
-﻿using AppTiengAnhBE.Services.QuestionServices;
+﻿using AppTiengAnhBE.Models.DTOs.QuestionDTO;
+using AppTiengAnhBE.Services.QuestionServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppTiengAnhBE.Controllers.QuestionsControllers
@@ -14,11 +15,24 @@ namespace AppTiengAnhBE.Controllers.QuestionsControllers
             _questionService = questionService;
         }
 
-        [HttpGet("lesson/{lessonId}")]
+        [HttpGet("question-by-lesson/{lessonId}")]
         public async Task<IActionResult> GetQuestionsByLesson(int lessonId)
         {
             var questions = await _questionService.GetQuestionsByLessonAsync(lessonId);
             return Ok(questions);
+        }
+        [HttpGet("question-by-lesson/{userResultId}/wrong-questions")]
+        public async Task<ActionResult<IEnumerable<QuestionDTO>>> GetWrongQuestionsRetry(int userResultId)
+        {
+            if (userResultId <= 0)
+                return BadRequest("Invalid userResultId");
+
+            var wrongQuestions = await _questionService.GetWrongQuestionsWithAnswersAsync(userResultId);
+
+            if (wrongQuestions == null || !wrongQuestions.Any())
+                return NotFound("No wrong questions found for this user result.");
+
+            return Ok(wrongQuestions);
         }
     }
 }
