@@ -60,7 +60,7 @@ namespace AppTiengAnhBE.Repositories.LessonRepository.LessonResults
         {
             var sql = @"
                 SELECT LOWER(answer_text) 
-                FROM user_question_answers
+                FROM question_answers
                 WHERE question_id = @QuestionId AND is_correct = TRUE;";
 
             var answers = await _dbConnection.QueryAsync<string>(sql, new { QuestionId = questionId });
@@ -75,10 +75,11 @@ namespace AppTiengAnhBE.Repositories.LessonRepository.LessonResults
 
             return await _dbConnection.QueryAsync<UserExerciseAnswer>(sql, new { ResultId = resultId });
         }
+
         public async Task<IEnumerable<UserLessonResult>> GetLessonResultsByUserIdAsync(int userId)
         {
             var sql = @"
-                SELECT id, user_id, lesson_id, score, submitted_at
+                SELECT id, user_id AS UserId, lesson_id AS LessonId, score, submitted_at AS CreatedAt
                 FROM user_lesson_results
                 WHERE user_id = @UserId
                 ORDER BY submitted_at DESC;";

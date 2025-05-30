@@ -1,4 +1,5 @@
 ﻿using AppTiengAnhBE.Models.DTOs.QuestionDTO;
+using AppTiengAnhBE.Models.SystemModel;
 using AppTiengAnhBE.Repositories.QuestionRepo;
 
 namespace AppTiengAnhBE.Services.QuestionServices
@@ -16,6 +17,10 @@ namespace AppTiengAnhBE.Services.QuestionServices
         {
             return await _repo.GetQuestionsByLessonAsync(lessonId);
         }
-    }
 
+        public async Task<IEnumerable<QuestionDTO>> GetWrongQuestionsWithAnswersAsync(int userResultId)
+        {
+            return await _repo.GetWrongQuestionsWithAnswersAsync(userResultId);
+        }
+    }
 }

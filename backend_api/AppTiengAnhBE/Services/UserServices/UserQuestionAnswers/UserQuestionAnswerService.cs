@@ -16,5 +16,9 @@ namespace AppTiengAnhBE.Services.UserServices.UserQuestionAnswers
         {
             return await _repository.GetUserAnswerDetailsByResultIdAsync(userResultId);
         }
+        public async Task<IEnumerable<UserAnswerDetail>> GetWrongQuestionIds(int userResultId)
+        {
+            return await _repository.GetWrongQuestionDetails(userResultId);
+        }
     }
 }

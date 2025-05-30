@@ -1,4 +1,5 @@
 ﻿using AppTiengAnhBE.Models.DTOs.LessonDTO;
+using AppTiengAnhBE.Models.DTOs.UserAnswerDTO;
 using AppTiengAnhBE.Services.LessonServices.LessonResults;
 using AppTiengAnhBE.Services.UserServices.UserQuestionAnswers;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +49,18 @@ namespace AppTiengAnhBE.Controllers.LessonsControllers
 
             return Ok(details);
         }
+        //api test: https://localhost:7093/api/lessonresults/wrong-questions/details/25
+        [HttpGet("wrong-questions/details/{userResultId}")]
+        public async Task<ActionResult<IEnumerable<UserAnswerDetail>>> GetWrongQuestionDetails(int userResultId)
+        {
+            var details = await _userQuestionAnswerService.GetWrongQuestionIds(userResultId);
 
+            if (details == null || !details.Any())
+                return NotFound("No wrong question details found for this user and lesson");
+
+            return Ok(details);
+        }
+        //api test: https://localhost:7093/api/lessonresults/history/17
         [HttpGet("history/{userId}")]
         public async Task<IActionResult> GetUserLessonHistory(int userId)
         {
