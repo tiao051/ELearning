@@ -21,11 +21,10 @@ namespace AppTiengAnhBE.Repositories.QuestionRepo
             JOIN question_types qt ON q.question_type_id = qt.id
             WHERE q.lesson_id = @LessonId;
 
-            SELECT qa.id, qa.question_id AS QuestionId, qa.answer_text AS AnswerText, qa.is_correct
+            SELECT qa.id, qa.question_id AS QuestionId, qa.answer_text AS AnswerText, qa.is_correct AS isCorrect
             FROM question_answers qa
             JOIN question q ON qa.question_id = q.id
             WHERE q.lesson_id = @LessonId;";
-
 
             using var multi = await _db.QueryMultipleAsync(sql, new { LessonId = lessonId });
 
