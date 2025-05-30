@@ -35,10 +35,9 @@ namespace AppTiengAnhBE.Services.LessonResults
             DateTime startedAtVN = TimeZoneInfo.ConvertTime(request.StartedAt, vietnamTimeZone);
             DateTime nowVN = TimeZoneInfo.ConvertTime(DateTime.Now, vietnamTimeZone);
 
-            Console.WriteLine($"DateTime.Now: {DateTime.Now}");         // Giờ local máy chạy code
-            Console.WriteLine($"DateTime.UtcNow: {DateTime.UtcNow}");   // Giờ UTC chuẩn
-            Console.WriteLine($"TimeZoneInfo.Local.Id: {TimeZoneInfo.Local.Id}");  // Timezone mặc định máy
-
+            Console.WriteLine($"DateTime.Now: {DateTime.Now}");      
+            Console.WriteLine($"DateTime.UtcNow: {DateTime.UtcNow}"); 
+            Console.WriteLine($"TimeZoneInfo.Local.Id: {TimeZoneInfo.Local.Id}"); 
 
             int resultId = await _repo.CreateUserLessonResultAsync(
                 request.UserId, request.LessonId, totalQuestions, totalCorrect, score, startedAtVN, nowVN);
