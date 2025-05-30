@@ -1,4 +1,5 @@
 ﻿using AppTiengAnhBE.Models.DTOs.LessonDTO;
+using AppTiengAnhBE.Models.DTOs.UserAnswerDTO;
 using AppTiengAnhBE.Services.LessonServices.LessonResults;
 using AppTiengAnhBE.Services.UserServices.UserQuestionAnswers;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +46,17 @@ namespace AppTiengAnhBE.Controllers.LessonsControllers
 
             if (details == null || !details.Any())
                 return NotFound($"No answers found for resultId = {resultId}");
+
+            return Ok(details);
+        }
+
+        [HttpGet("wrong-questions/details")]
+        public async Task<ActionResult<IEnumerable<UserAnswerDetail>>> GetWrongQuestionDetails([FromQuery] int userId)
+        {
+            var details = await _userQuestionAnswerService.GetWrongQuestionIds(userId);
+
+            if (details == null || !details.Any())
+                return NotFound("No wrong question details found for this user and lesson");
 
             return Ok(details);
         }
