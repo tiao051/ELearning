@@ -1,4 +1,4 @@
-namespace AppTiengAnhBE.Models.SystemModel
+namespace AppTiengAnhBE.Domain.Entities
 {
     public class Lesson
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AppTiengAnhBE.Models.SystemModel;
 using AppTiengAnhBE.Services.UserServices.UserCRUDServices;
+using AppTiengAnhBE.Models.SystemModel;
 
 namespace AppTiengAnhBE.Controllers
 {

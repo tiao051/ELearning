@@ -25,8 +25,43 @@ using AppTiengAnhBE.Services.RemindersCRUDServices;
 using AppTiengAnhBE.Services.UserServices.UserCRUDServices;
 using AppTiengAnhBE.Services.UserServices.UserQuestionAnswers;
 using AppTiengAnhBE.Services.WordServices;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using AppTiengAnhBE.Domain.Entities;
+using AppTiengAnhBE.Services.AuthServices;
+using AppTiengAnhBE.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Đăng ký JwtSettings
+builder.Services.Configure<JwtSettings>(
+    builder.Configuration.GetSection("JwtSettings"));
+
+// Cấu hình JWT Authentication
+var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+var key = Encoding.UTF8.GetBytes(jwtSettings.SecretKey);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false; // dev only
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidIssuer = jwtSettings.Issuer,
+        ValidAudience = jwtSettings.Audience,
+        ValidateLifetime = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuerSigningKey = true
+    };
+});
 
 // Database connection
 builder.Services.AddScoped<IDbConnection>(sp =>
@@ -62,6 +97,7 @@ builder.Services.AddScoped<ILessonResultService, LessonResultService>();
 builder.Services.AddScoped<IUserQuestionAnswerService, UserQuestionAnswerService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IWordService, WordService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Authentication configuration
 builder.Services.AddAuthentication(options =>

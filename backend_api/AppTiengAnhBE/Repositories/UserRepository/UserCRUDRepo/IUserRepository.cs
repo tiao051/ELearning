@@ -9,5 +9,6 @@ namespace AppTiengAnhBE.Repositories.UserRepository.UserCRUDRepo
         Task<int> CreateUserAsync(User user);
         Task<int> UpdateUserAsync(User user);
         Task<int> DeleteUserAsync(int id);
+        Task<User?> GetUserByEmailAsync(string email);
     }
 }

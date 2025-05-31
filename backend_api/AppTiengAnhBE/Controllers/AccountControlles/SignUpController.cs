@@ -5,7 +5,7 @@ namespace AppTiengAnhBE.Controllers.AccountControlles
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RegisterController : ControllerBase
+    public class SignUpController : ControllerBase
     {
     }
 }
