@@ -1,4 +1,4 @@
-﻿using AppTiengAnhBE.Models.SystemModel;
+﻿using AppTiengAnhBE.Domain.Entities;
 using AppTiengAnhBE.Services.LessonServices.LessonsCRUDServices;
 using Microsoft.AspNetCore.Mvc;
 

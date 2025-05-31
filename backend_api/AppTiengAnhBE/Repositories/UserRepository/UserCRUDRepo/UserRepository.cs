@@ -1,74 +1,70 @@
-using Npgsql;
 using Dapper;
+using System.Data;
 using AppTiengAnhBE.Models.SystemModel;
 
 namespace AppTiengAnhBE.Repositories.UserRepository.UserCRUDRepo
 {
     public class UserRepository : IUserRepository
     {
-        private readonly IConfiguration _configuration;
-        public UserRepository(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        private readonly IDbConnection _db;
 
-        private NpgsqlConnection CreateConnection()
+        public UserRepository(IDbConnection dbConnection)
         {
-            var connectionString = _configuration.GetConnectionString("DefaultConnection");
-            return new NpgsqlConnection(connectionString);
+            _db = dbConnection;
         }
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            using var connection = CreateConnection();
-            return await connection.QueryAsync<User>("SELECT * FROM users");
+            const string sql = "SELECT * FROM users";
+            return await _db.QueryAsync<User>(sql);
         }
 
-        public async Task<User> GetUserByIdAsync(int id)
+        public async Task<User?> GetUserByIdAsync(int id)
         {
-            using var connection = CreateConnection();
-            return await connection.QueryFirstOrDefaultAsync<User>("SELECT * FROM users WHERE id = @Id", new { Id = id });
+            const string sql = "SELECT * FROM users WHERE id = @Id";
+            return await _db.QueryFirstOrDefaultAsync<User>(sql, new { Id = id });
         }
 
-        public async Task<int> CreateUserAsync(User user)
+        public async Task CreateUserAsync(User user)
         {
-            using var connection = CreateConnection();
-            var sql = @"
-                INSERT INTO users (username, email, password, full_name, role_id) 
-                VALUES (@Username, @Email, @Password, @FullName, @RoleId) 
-                RETURNING Id";
-
-            var id = await connection.ExecuteScalarAsync<int>(sql, new
-            {
-                user.username,
-                user.email,
-                user.password,
-                user.full_name,
-                user.role_id
-            });
-            return id;
+            var query = @"INSERT INTO users (username, email, password, role_id)
+                      VALUES (@Username, @Email, @Password, @role_id)";
+            await _db.ExecuteAsync(query, user);
         }
 
         public async Task<int> UpdateUserAsync(User user)
         {
-            using var connection = CreateConnection();
-            var sql = @"
+            const string sql = @"
                 UPDATE users 
                 SET 
                     username = @Username,
-                    full_name = @Full_name,
+                    full_name = @Full_Name,
                     email = @Email, 
                     password = @Password,
-                    role_id = @Role_id
+                    role_id = @Role_Id
                 WHERE id = @Id";
-            return await connection.ExecuteAsync(sql, user);
+
+            return await _db.ExecuteAsync(sql, new
+            {
+                user.username,
+                user.full_name,
+                user.email,
+                user.password,
+                user.role_id,
+                user.id
+            });
         }
 
         public async Task<int> DeleteUserAsync(int id)
         {
-            using var connection = CreateConnection();
-            var sql = "DELETE FROM users WHERE id = @Id";
-            return await connection.ExecuteAsync(sql, new { Id = id });
+            const string sql = "DELETE FROM users WHERE id = @Id";
+            return await _db.ExecuteAsync(sql, new { Id = id });
+        }
+
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            const string sql = "SELECT id, email, password AS Password, username FROM users WHERE email = @Email";
+            return await _db.QueryFirstOrDefaultAsync<User>(sql, new { Email = email });
         }
     }
 }

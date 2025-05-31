@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using AppTiengAnhBE.Models.SystemModel;
 using AppTiengAnhBE.Services.CategoryServices.CategoriesCRUDServices;
+using AppTiengAnhBE.Models.SystemModel;
 
 namespace AppTiengAnhBE.Controllers.CategoriesController
 {

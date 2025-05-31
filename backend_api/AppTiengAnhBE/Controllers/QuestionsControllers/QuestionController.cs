@@ -21,6 +21,9 @@ namespace AppTiengAnhBE.Controllers.QuestionsControllers
             var questions = await _questionService.GetQuestionsByLessonAsync(lessonId);
             return Ok(questions);
         }
+
+        //test: https://localhost:7093/api/question/question-by-lesson/25/wrong-questions
+
         [HttpGet("question-by-lesson/{userResultId}/wrong-questions")]
         public async Task<ActionResult<IEnumerable<QuestionDTO>>> GetWrongQuestionsRetry(int userResultId)
         {

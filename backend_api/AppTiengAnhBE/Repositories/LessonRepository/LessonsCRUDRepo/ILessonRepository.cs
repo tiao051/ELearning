@@ -1,4 +1,4 @@
-using AppTiengAnhBE.Models.SystemModel;
+using AppTiengAnhBE.Domain.Entities;
 
 namespace AppTiengAnhBE.Repositories.LessonRepository.LessonsCRUDRepo
 {

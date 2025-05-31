@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AppTiengAnhBE.Models.SystemModel;
 using AppTiengAnhBE.Services.UserServices.UserCRUDServices;
+using AppTiengAnhBE.Models.SystemModel;
 
 namespace AppTiengAnhBE.Controllers
 {
@@ -29,13 +29,6 @@ namespace AppTiengAnhBE.Controllers
             var user = await _userService.GetUserByIdAsync(id);
             if (user == null) return NotFound();
             return Ok(user);
-        }
-
-        [HttpPost("users")]
-        public async Task<IActionResult> CreateUser([FromBody] User user)
-        {
-            var id = await _userService.CreateUserAsync(user);
-            return CreatedAtAction(nameof(GetUserById), new { id }, user);
         }
 
         [HttpPut("users/{id}")]

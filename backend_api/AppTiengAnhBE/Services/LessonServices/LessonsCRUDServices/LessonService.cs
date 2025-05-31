@@ -1,4 +1,4 @@
-using AppTiengAnhBE.Models.SystemModel;
+using AppTiengAnhBE.Domain.Entities;
 using AppTiengAnhBE.Repositories.LessonRepository.LessonsCRUDRepo;
 
 namespace AppTiengAnhBE.Services.LessonServices.LessonsCRUDServices
