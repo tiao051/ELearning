@@ -25,21 +25,11 @@ namespace AppTiengAnhBE.Repositories.UserRepository.UserCRUDRepo
             return await _db.QueryFirstOrDefaultAsync<User>(sql, new { Id = id });
         }
 
-        public async Task<int> CreateUserAsync(User user)
+        public async Task CreateUserAsync(User user)
         {
-            const string sql = @"
-                INSERT INTO users (username, email, password, full_name, role_id) 
-                VALUES (@Username, @Email, @Password, @FullName, @RoleId) 
-                RETURNING id";
-
-            return await _db.ExecuteScalarAsync<int>(sql, new
-            {
-                user.username,
-                user.email,
-                user.password,
-                user.full_name,
-                user.role_id
-            });
+            var query = @"INSERT INTO users (username, email, password, role_id)
+                      VALUES (@Username, @Email, @Password, @role_id)";
+            await _db.ExecuteAsync(query, user);
         }
 
         public async Task<int> UpdateUserAsync(User user)

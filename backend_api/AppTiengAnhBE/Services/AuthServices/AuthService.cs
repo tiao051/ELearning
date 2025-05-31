@@ -8,6 +8,7 @@ using AppTiengAnhBE.Repositories.UserRepository.UserCRUDRepo;
 using AppTiengAnhBE.Models.DTOs.LoginDTO;
 using AppTiengAnhBE.Models.SystemModel;
 using AppTiengAnhBE.Services.AuthServices;
+using AppTiengAnhBE.Models.DTOs.SignUpDTO;
 
 public class AuthService : IAuthService
 {
@@ -118,5 +119,21 @@ public class AuthService : IAuthService
         {
             throw new SecurityTokenException("Invalid refresh token");
         }
+    }
+    public async Task RegisterAsync(SignUpRequest request)
+    {
+        var existingUser = await _userRepo.GetUserByEmailAsync(request.Email);
+        if (existingUser != null)
+            throw new Exception("Email already registered");
+
+        var newUser = new User
+        {
+            username = request.Username,
+            email = request.Email,
+            password = request.Password,
+            role_id = 2
+        };
+
+        await _userRepo.CreateUserAsync(newUser);
     }
 }

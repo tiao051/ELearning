@@ -20,11 +20,6 @@ namespace AppTiengAnhBE.Services.UserServices.UserCRUDServices
             return await _userRepository.GetUserByIdAsync(id);
         }
 
-        public async Task<int> CreateUserAsync(User user)
-        {
-            return await _userRepository.CreateUserAsync(user);
-        }
-
         public async Task<int> UpdateUserAsync(User user)
         {
             return await _userRepository.UpdateUserAsync(user);
